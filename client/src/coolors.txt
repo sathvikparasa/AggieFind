@@ -1,0 +1,5 @@
+midnightGreen: "#004E64"
+straw: "#DBD56E"
+frenchGray: "#CBCBD4"
+bittersweet: "#EE6352"
+jade: "#57A773"
