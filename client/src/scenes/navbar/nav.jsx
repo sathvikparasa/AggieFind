@@ -31,7 +31,7 @@ const Navbar = () => {
     // Navigation functionality
     const navigate = useNavigate();
     // Grab user data from state
-    // const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user);
     // Option for minimum width
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px");
     const theme = useTheme();

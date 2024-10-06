@@ -67,7 +67,7 @@ const Form = () => {
             "http://localhost:3001/auth/register",
             {
                 method: "POST",
-                body: "formData",
+                body: formData,
             }
         );
         const savedUser = await savedUserResponse.json();
@@ -103,8 +103,8 @@ const Form = () => {
     }
 
     const handleFormSubmit = async (values, onSubmitProps) => {
-        if (isLogin) await loginSchema(values, onSubmitProps);
-        if (isRegister) await registerSchema(values, onSubmitProps);
+        if (isLogin) await login(values, onSubmitProps);
+        if (isRegister) await register(values, onSubmitProps);
     };
 
     return (
@@ -169,7 +169,7 @@ const Form = () => {
                                     >
                                         <input {...getInputProps()} />
                                         {!values.picture ? (
-                                        <p>Add Picture Here</p>
+                                        <Typography>Add Picture Here</Typography>
                                         ) : (
                                         <FlexBetween>
                                             <Typography>{values.picture.name}</Typography>
@@ -191,8 +191,16 @@ const Form = () => {
                             <TextField label="Email" onBlur={handleBlur} onChange={handleChange} value={values.email} name="email"
                                     error={Boolean(touched.email) && Boolean(errors.email)} helperText={touched.email && errors.email} sx={{ width: "70%", mt: "0.5rem", mbrl: "1rem", gridColumn: "span 2" }}/>
 
-                            <TextField label="Password" type="password" onBlur={handleBlur} onChange={handleChange} value={values.password} name="password"
-                                error={Boolean(touched.password) && Boolean(errors.password)} helperText={touched.password && errors.password} sx={{ mt: "1rem", width: "70%", gridColumn: "span 2" }}/>
+                            <TextField
+                                label="Password"
+                                type="password"
+                                onBlur={handleBlur} 
+                                onChange={handleChange} 
+                                value={values.password} 
+                                name="password"
+                                error={Boolean(touched.password) && Boolean(errors.password)} 
+                                helperText={touched.password && errors.password} 
+                                sx={{ mt: "1rem", width: "70%", gridColumn: "span 2" }}/>
                         </FlexBetween>
                     </Box>
 
@@ -202,7 +210,7 @@ const Form = () => {
                         <FlexBetween flexDirection="column">
                             <Button
                             type="submit" sx={{ fontSize: "1rem", m: "1rem 0", p: "0.5rem", width: "30%", border: "solid 1px #004E64", backgroundColor: "#f8f9fa", color:"#000","&:hover": {color: "#FFF", backgroundColor: "#004E64"}}}>
-                                {isLogin ? "LOGIN" : "REGISTER"}
+                                {isLogin ? "Login" : "Register"}
                             </Button>
                             <Typography onClick={() => {
                                 setPageType(isLogin ? "register" : "login")
