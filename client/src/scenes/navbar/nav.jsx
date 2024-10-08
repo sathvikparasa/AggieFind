@@ -21,6 +21,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLogOut } from "state";
 import { Form, Navigate, useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
+// import LogoSVG from "../../assets/aggiefind_logo.png"
+
 
 const Navbar = () => {
     
@@ -40,12 +42,13 @@ const Navbar = () => {
     const yellow = "#DBD56E"
     const red = "#EE6352";
 
-    // const fullName = `${user.firstName} ${user.lastName}`
-    const fullName = `Sathvik Parasa`
+    const fullName = `${user.firstName} ${user.lastName}`
+    // const fullName = `Sathvik Parasa`
     return (
         <FlexBetween padding="1rem 6%" backgroundColor="#FFF">
             <FlexBetween gap="1.75rem">
                 {/* Clamp determines min/max/preferred value for the font */}
+                {/* <LogoSVG /> */}
                 <Typography fontWeight="bold" fontSize="clamp(1rem, 2rem, 2.25rem)"
                             color="#0c5b71" onClick={() => navigate("/homePage")}
                             sx={{"&:hover": {cursor: "pointer", color: "#0c1b33"}}}>
@@ -131,7 +134,7 @@ const Navbar = () => {
                             <MenuItem value={fullName}>
                                 <Typography>{fullName}</Typography>
                             </MenuItem>
-                            <MenuItem onClick={() => dispatch(setLogOut)}>Log Out</MenuItem>
+                            <MenuItem onClick={() => dispatch(setLogOut())}>Log Out</MenuItem>
                         </Select>
                     </FormControl>
                 </FlexBetween>

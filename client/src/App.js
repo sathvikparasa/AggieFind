@@ -10,20 +10,23 @@ import { useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { themeSettings } from 'theme';
 import { ThemeProvider } from '@emotion/react';
+import { useSelector } from 'react-redux';
+import { CssBaseline } from '@mui/material';
 
 function App() {
   const theme = useMemo(() => createTheme(themeSettings()));
-
+  const isAuth = Boolean(useSelector((state) => state.token));
   return (
     <div className="app">
       <BrowserRouter>
       <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Routes>
             {/* Route default page to Login */}
             <Route path='/' element={<LoginPage />} />
-            <Route path='/homePage' element={<HomePage />} />
+            <Route path='/homePage' element={ isAuth ? <HomePage /> : <Navigate to="/" />} />
             {/* Make each profile user page unique via path */}
-            <Route path='/profile/:userId' element={<ProfilePage />} />
+            <Route path='/profile/:userId' element={isAuth ? <ProfilePage />  : <Navigate to="/" />} />
           </Routes>
           </ThemeProvider>
         </BrowserRouter>

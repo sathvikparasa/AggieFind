@@ -79,16 +79,22 @@ const Form = () => {
     }
 
     const login = async (values, onSubmitProps) => {
-        const loggedInResponse = await fetch(
-            "http://localhost:3001/auth/login",
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify(values),
-            }
-        );
-        const loggedIn = await loggedInResponse.json();
-        onSubmitProps.resetForm();
+        console.log("Got to login function.")
+        const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(values),
+          });
+          const loggedIn = await loggedInResponse.json();
+          onSubmitProps.resetForm();
+
+        console.log("Got the logged in response.")
+        // const loggedIn = await loggedInResponse.json();
+        
+        console.log("The token is: " + loggedIn.token)
+        console.log("Got the resetted form.")
+        // onSubmitProps.resetForm();
+
 
         if (loggedIn) {
             dispatch(
@@ -98,6 +104,7 @@ const Form = () => {
                 })
             );
 
+            
             navigate("/homePage/")
         }
     }
